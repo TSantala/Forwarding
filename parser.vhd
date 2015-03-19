@@ -21,8 +21,10 @@ architecture segment of parser is
 	type state_type is
 	(A, B, C);
 	signal state_reg, state_next: state_type;
-	buffer packet: 	std_logic_vector(12143 downto 0); 
+
 begin
+	buffer packet: 	std_logic_vector(12143 downto 0); 
+	
 	process (clk, reset) --state register update
 	begin
 		if (reset = '1') then state_reg <= A;
@@ -36,34 +38,37 @@ begin
 		lngth <= lngth_in
 	end process;
 	
-	process (reset, state_reg, enable, w, lngth_in, data, been_read)
+	process (clk, reset, state_reg, enable, w, lngth_in, data, been_read)
 	begin
-		case state_reg is
-		when A => --wait for enable, reset state
-			packet(12143 downto 0) <= '0' -- is this correct syntax?
-			if (enable = '1') then
-				state_next <= B;
-			else
-				state_next <= A;
-			end if;
-		when B => -- read in
-			for i in 0 to (to_integer(lngth_in) +17) loop
-				packet((8*i+7)downto (8*i)) <= w;
-				wait for 10 ns; -- make sure new data gets pumped in, wait one clk cycle for each read-in
-			end loop;
-			state_next <= C;
-		when C =>
-			-- parse, determine "start/end point"
-			sa <= packet(47 downto 0);
-			da <= packet(95 downto 48);
-			--lngth <= packet(111 downto 96);
-			data((8*to_integer(unsigned(lngth_in))-1) downto 0) <= packet((111 + 8*to_integer(unsigned(lngth_in))) downto 112); --know to look for this cutoff in further sections MSBs are 0s
-			fcp <= packet((143 + 8*to_integer((unsigned(lngth_in)))) downto (112 + 8*to_integer(unsigned(lngth_in))))
-			if (been_read = '1') then
-				state_next <= A;
-			else
+		if  (clk’event and clk = ‘1’) then
+			case state_reg is
+			when A => --wait for enable, reset state
+				packet(12143 downto 0) <= '0' -- is this correct syntax?
+				if (enable = '1') then
+					state_next <= B;
+				else	
+					state_next <= A;
+				end if;
+			when B => -- read in
+				for i in 0 to (to_integer(lngth_in) +18) loop
+					packet((8*i+7)downto (8*i)) <= w;
+					-- wait for 10 ns; -- make sure new data gets pumped in, wait one clk cycle for each read-in
+					-- ^^ instead of waiting, embed whole case statement on clock edge.
+				end loop;
 				state_next <= C;
-			end if;
-		end case;
+			when C =>
+				-- parse, determine "start/end point"
+				sa <= packet(47 downto 0);
+				da <= packet(95 downto 48);
+				--lngth <= packet(111 downto 96);
+				data((8*to_integer(unsigned(lngth_in))-1) downto 0) <= packet((111 + 8*to_integer(unsigned(lngth_in))) downto 112); --know to look for this cutoff in further sections MSBs are 0s
+				fcp <= packet((143 + 8*to_integer((unsigned(lngth_in)))) downto (112 + 8*to_integer(unsigned(lngth_in))))
+				if (been_read = '1') then
+					state_next <= A;
+				else
+					state_next <= C;
+				end if;
+			end case;
+		end if;
 	end process;
 end segment;

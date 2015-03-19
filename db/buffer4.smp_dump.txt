@@ -1,0 +1,8 @@
+
+State Machine - |buffer4|state_reg
+Name state_reg.E state_reg.D state_reg.C state_reg.B state_reg.A 
+state_reg.A 0 0 0 0 0 
+state_reg.B 0 0 0 1 1 
+state_reg.C 0 0 1 0 1 
+state_reg.D 0 1 0 0 1 
+state_reg.E 1 0 0 0 1 
