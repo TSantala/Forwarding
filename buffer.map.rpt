@@ -1,5 +1,5 @@
 Analysis & Synthesis report for buffer
-Wed Mar 18 20:37:02 2015
+Wed Mar 18 21:33:35 2015
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -43,16 +43,16 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                 ;
 +-------------------------------+----------------------------------------------+
-; Analysis & Synthesis Status   ; Successful - Wed Mar 18 20:37:02 2015        ;
+; Analysis & Synthesis Status   ; Successful - Wed Mar 18 21:33:35 2015        ;
 ; Quartus II Version            ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name                 ; buffer                                       ;
 ; Top-level Entity Name         ; buffer4                                      ;
 ; Family                        ; Stratix II                                   ;
 ; Logic utilization             ; N/A                                          ;
-;     Combinational ALUTs       ; 78                                           ;
+;     Combinational ALUTs       ; 168                                          ;
 ;     Dedicated logic registers ; 5                                            ;
 ; Total registers               ; 5                                            ;
-; Total pins                    ; 62                                           ;
+; Total pins                    ; 113                                          ;
 ; Total virtual pins            ; 0                                            ;
 ; Total block memory bits       ; 0                                            ;
 ; DSP block 9-bit elements      ; 0                                            ;
@@ -165,38 +165,38 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-----------------------------------------------+-------------+
 ; Resource                                      ; Usage       ;
 +-----------------------------------------------+-------------+
-; Estimated ALUTs Used                          ; 78          ;
+; Estimated ALUTs Used                          ; 168         ;
 ; Dedicated logic registers                     ; 5           ;
 ;                                               ;             ;
-; Estimated ALUTs Unavailable                   ; 12          ;
+; Estimated ALUTs Unavailable                   ; 45          ;
 ;                                               ;             ;
-; Total combinational functions                 ; 78          ;
+; Total combinational functions                 ; 168         ;
 ; Combinational ALUT usage by number of inputs  ;             ;
 ;     -- 7 input functions                      ; 0           ;
-;     -- 6 input functions                      ; 14          ;
-;     -- 5 input functions                      ; 1           ;
-;     -- 4 input functions                      ; 0           ;
-;     -- <=3 input functions                    ; 63          ;
+;     -- 6 input functions                      ; 45          ;
+;     -- 5 input functions                      ; 11          ;
+;     -- 4 input functions                      ; 17          ;
+;     -- <=3 input functions                    ; 95          ;
 ;                                               ;             ;
 ; Combinational ALUTs by mode                   ;             ;
-;     -- normal mode                            ; 62          ;
+;     -- normal mode                            ; 96          ;
 ;     -- extended LUT mode                      ; 0           ;
-;     -- arithmetic mode                        ; 16          ;
+;     -- arithmetic mode                        ; 72          ;
 ;     -- shared arithmetic mode                 ; 0           ;
 ;                                               ;             ;
-; Estimated ALUT/register pairs used            ; 93          ;
+; Estimated ALUT/register pairs used            ; 213         ;
 ;                                               ;             ;
 ; Total registers                               ; 5           ;
 ;     -- Dedicated logic registers              ; 5           ;
 ;     -- I/O registers                          ; 0           ;
 ;                                               ;             ;
-; Estimated ALMs:  partially or completely used ; 47          ;
+; Estimated ALMs:  partially or completely used ; 107         ;
 ;                                               ;             ;
-; I/O pins                                      ; 62          ;
-; Maximum fan-out node                          ; state_reg.A ;
-; Maximum fan-out                               ; 26          ;
-; Total fan-out                                 ; 267         ;
-; Average fan-out                               ; 1.84        ;
+; I/O pins                                      ; 113         ;
+; Maximum fan-out node                          ; state_reg.C ;
+; Maximum fan-out                               ; 23          ;
+; Total fan-out                                 ; 628         ;
+; Average fan-out                               ; 2.20        ;
 +-----------------------------------------------+-------------+
 
 
@@ -205,7 +205,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
-; |buffer4                   ; 78 (78)           ; 5 (5)        ; 0                 ; 0            ; 0       ; 0         ; 0         ; 62   ; 0            ; |buffer4            ; work         ;
+; |buffer4                   ; 168 (168)         ; 5 (5)        ; 0                 ; 0            ; 0       ; 0         ; 0         ; 113  ; 0            ; |buffer4            ; work         ;
 +----------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -229,14 +229,6 @@ Encoding Type:  One-Hot
 +-----------------------------------------------------+---------------------+------------------------+
 ; Latch Name                                          ; Latch Enable Signal ; Free of Timing Hazards ;
 +-----------------------------------------------------+---------------------+------------------------+
-; output[0]$latch                                     ; state_reg.A         ; yes                    ;
-; output[1]$latch                                     ; state_reg.A         ; yes                    ;
-; output[2]$latch                                     ; state_reg.A         ; yes                    ;
-; output[3]$latch                                     ; state_reg.A         ; yes                    ;
-; output[4]$latch                                     ; state_reg.A         ; yes                    ;
-; output[5]$latch                                     ; state_reg.A         ; yes                    ;
-; output[6]$latch                                     ; state_reg.A         ; yes                    ;
-; output[7]$latch                                     ; state_reg.A         ; yes                    ;
 ; current_length[0]                                   ; state_reg.A         ; yes                    ;
 ; current_length[1]                                   ; state_reg.A         ; yes                    ;
 ; current_length[2]                                   ; state_reg.A         ; yes                    ;
@@ -253,7 +245,7 @@ Encoding Type:  One-Hot
 ; current_length[13]                                  ; state_reg.A         ; yes                    ;
 ; current_length[14]                                  ; state_reg.A         ; yes                    ;
 ; current_length[15]                                  ; state_reg.A         ; yes                    ;
-; Number of user-specified and inferred latches = 24  ;                     ;                        ;
+; Number of user-specified and inferred latches = 16  ;                     ;                        ;
 +-----------------------------------------------------+---------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
@@ -268,7 +260,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 5     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 3     ;
+; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -278,7 +270,8 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 4:1                ; 8 bits    ; 16 ALUTs      ; 16 ALUTs             ; 0 ALUTs                ; No         ; |buffer4|Selector21        ;
+; 5:1                ; 8 bits    ; 24 ALUTs      ; 24 ALUTs             ; 0 ALUTs                ; No         ; |buffer4|Selector21        ;
+; 8:1                ; 16 bits   ; 80 ALUTs      ; 16 ALUTs             ; 64 ALUTs               ; No         ; |buffer4|Selector28        ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -288,54 +281,37 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Wed Mar 18 20:37:01 2015
+    Info: Processing started: Wed Mar 18 21:33:33 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off buffer4 -c buffer
 Info: Found 2 design units, including 1 entities, in source file buffer4.vhd
     Info: Found design unit 1: buffer4-selector
     Info: Found entity 1: buffer4
 Info: Elaborating entity "buffer4" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at buffer4.vhd(44): signal "current_length" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at buffer4.vhd(45): signal "current_length" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at buffer4.vhd(54): signal "current_length" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at buffer4.vhd(55): signal "current_length" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at buffer4.vhd(64): signal "current_length" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at buffer4.vhd(65): signal "current_length" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at buffer4.vhd(74): signal "current_length" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at buffer4.vhd(75): signal "current_length" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at buffer4.vhd(31): inferring latch(es) for signal or variable "output", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at buffer4.vhd(31): inferring latch(es) for signal or variable "current_length", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "current_length[0]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[1]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[2]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[3]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[4]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[5]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[6]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[7]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[8]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[9]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[10]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[11]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[12]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[13]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[14]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "current_length[15]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "output[0]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "output[1]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "output[2]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "output[3]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "output[4]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "output[5]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "output[6]" at buffer4.vhd(31)
-Info (10041): Inferred latch for "output[7]" at buffer4.vhd(31)
-Info: Implemented 143 device resources after synthesis - the final resource count might be different
-    Info: Implemented 51 input pins
-    Info: Implemented 11 output pins
-    Info: Implemented 81 logic cells
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 10 warnings
+Warning (10631): VHDL Process Statement warning at buffer4.vhd(34): inferring latch(es) for signal or variable "current_length", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "current_length[0]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[1]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[2]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[3]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[4]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[5]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[6]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[7]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[8]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[9]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[10]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[11]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[12]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[13]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[14]" at buffer4.vhd(34)
+Info (10041): Inferred latch for "current_length[15]" at buffer4.vhd(34)
+Info: Implemented 281 device resources after synthesis - the final resource count might be different
+    Info: Implemented 99 input pins
+    Info: Implemented 14 output pins
+    Info: Implemented 168 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 231 megabytes
-    Info: Processing ended: Wed Mar 18 20:37:02 2015
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+    Info: Processing ended: Wed Mar 18 21:33:35 2015
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 
